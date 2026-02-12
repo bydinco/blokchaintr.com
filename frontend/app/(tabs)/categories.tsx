@@ -170,8 +170,12 @@ export default function Categories() {
     }
   };
 
-  const incomeCategories = categories.filter((c) => c.type === 'income');
-  const expenseCategories = categories.filter((c) => c.type === 'expense');
+  const incomeCategories = categories.filter((c) => c.type === 'income' && !c.parent_id);
+  const expenseCategories = categories.filter((c) => c.type === 'expense' && !c.parent_id);
+
+  const getSubCategories = (parentId: string) => {
+    return categories.filter((c) => c.parent_id === parentId);
+  };
 
   if (loading) {
     return (
