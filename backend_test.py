@@ -386,8 +386,8 @@ class FinancialAppTester:
             
             if response.status_code == 200:
                 data = response.json()
-                if "id" in data and data["name"] == "Ahmet Yılmaz Müşteri":
-                    self.created_current_account_id = data["id"]
+                if ("id" in data or "_id" in data) and data["name"] == "Ahmet Yılmaz Müşteri":
+                    self.created_current_account_id = data.get("id") or data.get("_id")
                     self.log("✅ Current account creation successful")
                     return True
                 else:
