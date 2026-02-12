@@ -320,7 +320,8 @@ class FinancialAppTester:
             
             if response.status_code == 200:
                 data = response.json()
-                if "id" in data and data["id"] == self.created_transaction_id:
+                transaction_id = data.get("id") or data.get("_id")
+                if transaction_id == self.created_transaction_id:
                     self.log("✅ Single transaction retrieval successful")
                     return True
                 else:
