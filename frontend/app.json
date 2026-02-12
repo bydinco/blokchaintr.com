@@ -1,21 +1,34 @@
 {
   "expo": {
-    "name": "frontend",
-    "slug": "frontend",
+    "name": "Finansal Yönetim",
+    "slug": "finansal-yonetim",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "frontend",
+    "scheme": "finansal-yonetim",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.finansal.yonetim",
+      "infoPlist": {
+        "NSCameraUsageDescription": "Fiş ve fatura fotoğrafı çekmek için kamera erişimi gereklidir",
+        "NSPhotoLibraryUsageDescription": "Fiş ve fatura fotoğrafı seçmek için galeri erişimi gereklidir"
+      }
     },
     "android": {
+      "package": "com.finansal.yonetim",
+      "versionCode": 1,
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
-        "backgroundColor": "#000"
+        "backgroundColor": "#0F172A"
       },
+      "permissions": [
+        "CAMERA",
+        "READ_EXTERNAL_STORAGE",
+        "WRITE_EXTERNAL_STORAGE",
+        "READ_MEDIA_IMAGES"
+      ],
       "edgeToEdgeEnabled": true
     },
     "web": {
