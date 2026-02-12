@@ -439,18 +439,21 @@ export default function Transactions() {
               </View>
 
               <View style={styles.formGroup}>
-                <Text style={styles.label}>Fiş / Fatura Fotoğrafı</Text>
-                <View style={styles.photoButtons}>
-                  <TouchableOpacity style={styles.photoButton} onPress={takePhoto}>
-                    <Ionicons name="camera" size={24} color="#0F172A" />
-                    <Text style={styles.photoButtonText}>Fotoğraf Çek</Text>
-                  </TouchableOpacity>
-                  <TouchableOpacity style={styles.photoButton} onPress={pickImage}>
-                    <Ionicons name="images" size={24} color="#0F172A" />
-                    <Text style={styles.photoButtonText}>Galeriden Seç</Text>
-                  </TouchableOpacity>
-                </View>
-                {photo && (
+                <Text style={styles.label}>
+                  Fiş / Fatura Fotoğrafı <Text style={styles.optionalLabel}>(Opsiyonel)</Text>
+                </Text>
+                {!photo ? (
+                  <View style={styles.photoButtons}>
+                    <TouchableOpacity style={styles.photoButton} onPress={takePhoto}>
+                      <Ionicons name="camera" size={24} color="#0F172A" />
+                      <Text style={styles.photoButtonText}>Fotoğraf Çek</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.photoButton} onPress={pickImage}>
+                      <Ionicons name="images" size={24} color="#0F172A" />
+                      <Text style={styles.photoButtonText}>Galeriden Seç</Text>
+                    </TouchableOpacity>
+                  </View>
+                ) : (
                   <View style={styles.photoPreview}>
                     <Image source={{ uri: photo }} style={styles.photoImage} />
                     <TouchableOpacity
