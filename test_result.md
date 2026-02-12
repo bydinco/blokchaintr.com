@@ -326,18 +326,13 @@ metadata:
   run_ui: false
 
 test_plan:
-  current_focus:
-    - "Authentication (JWT + bcrypt)"
-    - "Categories CRUD with hierarchical support"
-    - "Transactions CRUD with photo upload (base64)"
-    - "Current Accounts (Cari) CRUD"
-    - "Current Account Transactions (Borç/Alacak)"
-    - "Dashboard endpoint with stats"
-    - "Reports endpoint with filtering"
+  current_focus: []
   stuck_tasks: []
-  test_all: true
+  test_all: false
   test_priority: "high_first"
 
 agent_communication:
   - agent: "main"
     message: "Full-stack gelir-gider takip + Cari Hesap (Borç/Alacak) uygulaması oluşturuldu. Backend tüm endpoint'lerle hazır (Auth, Categories, Transactions, Current Accounts, Dashboard, Reports). Frontend 5 tab'lı mobil UI ile hazır. Backend auth endpoint'i test edildi ve çalışıyor. Tüm backend endpoint'lerinin ve frontend UI'nin test edilmesi gerekiyor."
+  - agent: "testing"
+    message: "✅ BACKEND TESTING COMPLETE - All 20 backend API tests passed successfully! Tested: Authentication (register/login/me), Categories CRUD + reorder, Transactions CRUD with base64 photo upload, Current Accounts CRUD, Current Account Transactions (Borç/Alacak) with balance calculation, Dashboard stats, and Reports with date filtering. All endpoints working correctly with Turkish data. Balance calculation verified: credit transactions add to balance, debt transactions subtract from balance. Photo upload base64 format working. All CRUD operations functional."
