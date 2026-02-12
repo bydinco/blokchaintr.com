@@ -407,6 +407,7 @@ export default function Categories() {
                     type === 'income' && styles.typeButtonActive,
                   ]}
                   onPress={() => setType('income')}
+                  disabled={!!parentId}
                 >
                   <Text
                     style={[
@@ -423,6 +424,7 @@ export default function Categories() {
                     type === 'expense' && styles.typeButtonActive,
                   ]}
                   onPress={() => setType('expense')}
+                  disabled={!!parentId}
                 >
                   <Text
                     style={[
@@ -435,13 +437,24 @@ export default function Categories() {
                 </TouchableOpacity>
               </View>
 
+              {parentId && (
+                <View style={styles.parentInfo}>
+                  <Ionicons name="information-circle" size={20} color="#0F172A" />
+                  <Text style={styles.parentInfoText}>
+                    {categories.find(c => c._id === parentId)?.name} kategorisine alt kategori ekliyorsunuz
+                  </Text>
+                </View>
+              )}
+
               <View style={styles.formGroup}>
-                <Text style={styles.label}>Kategori Adı</Text>
+                <Text style={styles.label}>
+                  {parentId ? 'Alt Kategori Adı' : 'Kategori Adı'}
+                </Text>
                 <TextInput
                   style={styles.input}
                   value={name}
                   onChangeText={setName}
-                  placeholder="Örn: Yemek, Ulaşım, Maaş..."
+                  placeholder={parentId ? "Örn: Market, Restoran, Benzin..." : "Örn: Yemek, Ulaşım, Maaş..."}
                   placeholderTextColor="#94A3B8"
                 />
               </View>
