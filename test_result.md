@@ -116,78 +116,99 @@ backend:
       - working: true
         agent: "main"
         comment: "JWT authentication implemented with register and login endpoints. Tested successfully."
+      - working: true
+        agent: "testing"
+        comment: "✅ All authentication endpoints tested successfully: register (handles existing users), login (JWT token generation), and get current user (auth required). All working correctly."
   
   - task: "Categories CRUD with hierarchical support"
     implemented: true
-    working: "NA"
+    working: true
     file: "/app/backend/server.py"
     stuck_count: 0
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
       - working: "NA"
         agent: "main"
         comment: "Category endpoints implemented with color, type, parent_id, and reordering support. Needs testing."
+      - working: true
+        agent: "testing"
+        comment: "✅ All category endpoints tested successfully: create (with Turkish names, colors, types), list (returns all user categories), update (name/color changes), and reorder (order field updates). All working correctly."
   
   - task: "Transactions CRUD with photo upload (base64)"
     implemented: true
-    working: "NA"
+    working: true
     file: "/app/backend/server.py"
     stuck_count: 0
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
       - working: "NA"
         agent: "main"
         comment: "Transaction endpoints with payment method, category, date, photo (base64) support. Needs testing."
+      - working: true
+        agent: "testing"
+        comment: "✅ All transaction endpoints tested successfully: create (with base64 photo, Turkish descriptions), list (with type filtering), get single transaction, and update. Photo upload base64 format working correctly."
   
   - task: "Current Accounts (Cari) CRUD"
     implemented: true
-    working: "NA"
+    working: true
     file: "/app/backend/server.py"
     stuck_count: 0
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
       - working: "NA"
         agent: "main"
         comment: "Current account endpoints for customer/supplier management. Needs testing."
+      - working: true
+        agent: "testing"
+        comment: "✅ All current account endpoints tested successfully: create (customer/supplier types with Turkish names), list, get single account, update, and delete (with cascade delete of transactions). All working correctly."
   
   - task: "Current Account Transactions (Borç/Alacak)"
     implemented: true
-    working: "NA"
+    working: true
     file: "/app/backend/server.py"
     stuck_count: 0
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
       - working: "NA"
         agent: "main"
         comment: "Debt/Credit transaction endpoints with balance calculation. Needs testing."
+      - working: true
+        agent: "testing"
+        comment: "✅ Current account transaction endpoints tested successfully: create credit/debt transactions, list transactions, and delete with balance reversal. Balance calculation verified: credit (+1500) + debt (-500) = 1000 balance. All working correctly."
   
   - task: "Dashboard endpoint with stats"
     implemented: true
-    working: "NA"
+    working: true
     file: "/app/backend/server.py"
     stuck_count: 0
     priority: "medium"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
       - working: "NA"
         agent: "main"
         comment: "Dashboard with income/expense/balance, recent transactions, top categories. Needs testing."
+      - working: true
+        agent: "testing"
+        comment: "✅ Dashboard endpoint tested successfully: returns total income/expense/balance for current month, recent 5 transactions, and top expense categories. All fields present and calculations correct."
   
   - task: "Reports endpoint with filtering"
     implemented: true
-    working: "NA"
+    working: true
     file: "/app/backend/server.py"
     stuck_count: 0
     priority: "medium"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
       - working: "NA"
         agent: "main"
         comment: "Reports endpoint with date range filtering and category breakdown. Needs testing."
+      - working: true
+        agent: "testing"
+        comment: "✅ Reports endpoint tested successfully: works both with and without date filtering, returns summary (income/expense/balance), category breakdown, and transaction count. All working correctly."
 
 frontend:
   - task: "Auth Context & API setup"
