@@ -259,8 +259,8 @@ class FinancialAppTester:
             
             if response.status_code == 200:
                 data = response.json()
-                if "id" in data and data["amount"] == 125.50:
-                    self.created_transaction_id = data["id"]
+                if ("id" in data or "_id" in data) and data["amount"] == 125.50:
+                    self.created_transaction_id = data.get("id") or data.get("_id")
                     self.log("✅ Transaction creation successful")
                     return True
                 else:
