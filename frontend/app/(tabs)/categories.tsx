@@ -710,6 +710,20 @@ const styles = StyleSheet.create({
     borderWidth: 3,
     borderColor: '#0F172A',
   },
+  parentInfo: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#F0F9FF',
+    padding: 12,
+    borderRadius: 8,
+    marginBottom: 20,
+    gap: 8,
+  },
+  parentInfoText: {
+    flex: 1,
+    fontSize: 14,
+    color: '#0F172A',
+  },
   submitButton: {
     backgroundColor: '#0F172A',
     borderRadius: 12,
