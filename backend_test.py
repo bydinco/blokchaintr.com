@@ -506,8 +506,8 @@ class FinancialAppTester:
             
             if response.status_code == 200:
                 data = response.json()
-                if "id" in data and data["type"] == "credit":
-                    self.created_ca_transaction_id = data["id"]
+                if ("id" in data or "_id" in data) and data["type"] == "credit":
+                    self.created_ca_transaction_id = data.get("id") or data.get("_id")
                     self.log("✅ Current account credit transaction successful")
                     
                     # Test debt (borç) transaction
