@@ -52,7 +52,11 @@
       "typedRoutes": true
     },
     "extra": {
-      "router": {}
-    }
+      "router": {},
+      "eas": {
+        "projectId": "0eb30f92-23f1-4ec6-8673-b99b50aa8773"
+      }
+    },
+    "owner": "bydinco"
   }
 }
