@@ -190,50 +190,92 @@ export default function Categories() {
       <ScrollView style={styles.scrollView}>
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Gelir Kategorileri</Text>
-          {incomeCategories.map((category, index) => (
-            <View key={category._id} style={styles.categoryCard}>
-              <View style={styles.categoryLeft}>
-                <View style={[styles.colorDot, { backgroundColor: category.color }]} />
-                <Text style={styles.categoryName}>{category.name}</Text>
+          {incomeCategories.map((category, index) => {
+            const subCategories = getSubCategories(category._id);
+            return (
+              <View key={category._id}>
+                {/* Ana Kategori */}
+                <View style={styles.categoryCard}>
+                  <View style={styles.categoryLeft}>
+                    <View style={[styles.colorDot, { backgroundColor: category.color }]} />
+                    <Text style={styles.categoryName}>{category.name}</Text>
+                    {subCategories.length > 0 && (
+                      <View style={styles.subBadge}>
+                        <Text style={styles.subBadgeText}>{subCategories.length}</Text>
+                      </View>
+                    )}
+                  </View>
+                  <View style={styles.categoryActions}>
+                    <TouchableOpacity
+                      onPress={() => moveCategory(category._id, 'up')}
+                      disabled={index === 0}
+                      style={styles.actionButton}
+                    >
+                      <Ionicons
+                        name="arrow-up"
+                        size={20}
+                        color={index === 0 ? '#CBD5E1' : '#64748B'}
+                      />
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                      onPress={() => moveCategory(category._id, 'down')}
+                      disabled={index === incomeCategories.length - 1}
+                      style={styles.actionButton}
+                    >
+                      <Ionicons
+                        name="arrow-down"
+                        size={20}
+                        color={index === incomeCategories.length - 1 ? '#CBD5E1' : '#64748B'}
+                      />
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                      onPress={() => openModal(undefined, category)}
+                      style={styles.actionButton}
+                    >
+                      <Ionicons name="add" size={20} color="#10B981" />
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                      onPress={() => openModal(category)}
+                      style={styles.actionButton}
+                    >
+                      <Ionicons name="create" size={20} color="#0F172A" />
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                      onPress={() => handleDelete(category._id)}
+                      style={styles.actionButton}
+                    >
+                      <Ionicons name="trash" size={20} color="#EF4444" />
+                    </TouchableOpacity>
+                  </View>
+                </View>
+                
+                {/* Alt Kategoriler */}
+                {subCategories.map((subCategory) => (
+                  <View key={subCategory._id} style={styles.subCategoryCard}>
+                    <View style={styles.subCategoryLeft}>
+                      <Ionicons name="return-down-forward" size={16} color="#94A3B8" />
+                      <View style={[styles.colorDotSmall, { backgroundColor: subCategory.color }]} />
+                      <Text style={styles.subCategoryName}>{subCategory.name}</Text>
+                    </View>
+                    <View style={styles.categoryActions}>
+                      <TouchableOpacity
+                        onPress={() => openModal(subCategory)}
+                        style={styles.actionButton}
+                      >
+                        <Ionicons name="create" size={18} color="#0F172A" />
+                      </TouchableOpacity>
+                      <TouchableOpacity
+                        onPress={() => handleDelete(subCategory._id)}
+                        style={styles.actionButton}
+                      >
+                        <Ionicons name="trash" size={18} color="#EF4444" />
+                      </TouchableOpacity>
+                    </View>
+                  </View>
+                ))}
               </View>
-              <View style={styles.categoryActions}>
-                <TouchableOpacity
-                  onPress={() => moveCategory(category._id, 'up')}
-                  disabled={index === 0}
-                  style={styles.actionButton}
-                >
-                  <Ionicons
-                    name="arrow-up"
-                    size={20}
-                    color={index === 0 ? '#CBD5E1' : '#64748B'}
-                  />
-                </TouchableOpacity>
-                <TouchableOpacity
-                  onPress={() => moveCategory(category._id, 'down')}
-                  disabled={index === incomeCategories.length - 1}
-                  style={styles.actionButton}
-                >
-                  <Ionicons
-                    name="arrow-down"
-                    size={20}
-                    color={index === incomeCategories.length - 1 ? '#CBD5E1' : '#64748B'}
-                  />
-                </TouchableOpacity>
-                <TouchableOpacity
-                  onPress={() => openModal(category)}
-                  style={styles.actionButton}
-                >
-                  <Ionicons name="create" size={20} color="#0F172A" />
-                </TouchableOpacity>
-                <TouchableOpacity
-                  onPress={() => handleDelete(category._id)}
-                  style={styles.actionButton}
-                >
-                  <Ionicons name="trash" size={20} color="#EF4444" />
-                </TouchableOpacity>
-              </View>
-            </View>
-          ))}
+            );
+          })}
           {incomeCategories.length === 0 && (
             <Text style={styles.emptyText}>Henüz gelir kategorisi yok</Text>
           )}
@@ -241,50 +283,92 @@ export default function Categories() {
 
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Gider Kategorileri</Text>
-          {expenseCategories.map((category, index) => (
-            <View key={category._id} style={styles.categoryCard}>
-              <View style={styles.categoryLeft}>
-                <View style={[styles.colorDot, { backgroundColor: category.color }]} />
-                <Text style={styles.categoryName}>{category.name}</Text>
+          {expenseCategories.map((category, index) => {
+            const subCategories = getSubCategories(category._id);
+            return (
+              <View key={category._id}>
+                {/* Ana Kategori */}
+                <View style={styles.categoryCard}>
+                  <View style={styles.categoryLeft}>
+                    <View style={[styles.colorDot, { backgroundColor: category.color }]} />
+                    <Text style={styles.categoryName}>{category.name}</Text>
+                    {subCategories.length > 0 && (
+                      <View style={styles.subBadge}>
+                        <Text style={styles.subBadgeText}>{subCategories.length}</Text>
+                      </View>
+                    )}
+                  </View>
+                  <View style={styles.categoryActions}>
+                    <TouchableOpacity
+                      onPress={() => moveCategory(category._id, 'up')}
+                      disabled={index === 0}
+                      style={styles.actionButton}
+                    >
+                      <Ionicons
+                        name="arrow-up"
+                        size={20}
+                        color={index === 0 ? '#CBD5E1' : '#64748B'}
+                      />
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                      onPress={() => moveCategory(category._id, 'down')}
+                      disabled={index === expenseCategories.length - 1}
+                      style={styles.actionButton}
+                    >
+                      <Ionicons
+                        name="arrow-down"
+                        size={20}
+                        color={index === expenseCategories.length - 1 ? '#CBD5E1' : '#64748B'}
+                      />
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                      onPress={() => openModal(undefined, category)}
+                      style={styles.actionButton}
+                    >
+                      <Ionicons name="add" size={20} color="#10B981" />
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                      onPress={() => openModal(category)}
+                      style={styles.actionButton}
+                    >
+                      <Ionicons name="create" size={20} color="#0F172A" />
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                      onPress={() => handleDelete(category._id)}
+                      style={styles.actionButton}
+                    >
+                      <Ionicons name="trash" size={20} color="#EF4444" />
+                    </TouchableOpacity>
+                  </View>
+                </View>
+                
+                {/* Alt Kategoriler */}
+                {subCategories.map((subCategory) => (
+                  <View key={subCategory._id} style={styles.subCategoryCard}>
+                    <View style={styles.subCategoryLeft}>
+                      <Ionicons name="return-down-forward" size={16} color="#94A3B8" />
+                      <View style={[styles.colorDotSmall, { backgroundColor: subCategory.color }]} />
+                      <Text style={styles.subCategoryName}>{subCategory.name}</Text>
+                    </View>
+                    <View style={styles.categoryActions}>
+                      <TouchableOpacity
+                        onPress={() => openModal(subCategory)}
+                        style={styles.actionButton}
+                      >
+                        <Ionicons name="create" size={18} color="#0F172A" />
+                      </TouchableOpacity>
+                      <TouchableOpacity
+                        onPress={() => handleDelete(subCategory._id)}
+                        style={styles.actionButton}
+                      >
+                        <Ionicons name="trash" size={18} color="#EF4444" />
+                      </TouchableOpacity>
+                    </View>
+                  </View>
+                ))}
               </View>
-              <View style={styles.categoryActions}>
-                <TouchableOpacity
-                  onPress={() => moveCategory(category._id, 'up')}
-                  disabled={index === 0}
-                  style={styles.actionButton}
-                >
-                  <Ionicons
-                    name="arrow-up"
-                    size={20}
-                    color={index === 0 ? '#CBD5E1' : '#64748B'}
-                  />
-                </TouchableOpacity>
-                <TouchableOpacity
-                  onPress={() => moveCategory(category._id, 'down')}
-                  disabled={index === expenseCategories.length - 1}
-                  style={styles.actionButton}
-                >
-                  <Ionicons
-                    name="arrow-down"
-                    size={20}
-                    color={index === expenseCategories.length - 1 ? '#CBD5E1' : '#64748B'}
-                  />
-                </TouchableOpacity>
-                <TouchableOpacity
-                  onPress={() => openModal(category)}
-                  style={styles.actionButton}
-                >
-                  <Ionicons name="create" size={20} color="#0F172A" />
-                </TouchableOpacity>
-                <TouchableOpacity
-                  onPress={() => handleDelete(category._id)}
-                  style={styles.actionButton}
-                >
-                  <Ionicons name="trash" size={20} color="#EF4444" />
-                </TouchableOpacity>
-              </View>
-            </View>
-          ))}
+            );
+          })}
           {expenseCategories.length === 0 && (
             <Text style={styles.emptyText}>Henüz gider kategorisi yok</Text>
           )}
