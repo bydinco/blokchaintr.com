@@ -438,7 +438,8 @@ class FinancialAppTester:
             
             if response.status_code == 200:
                 data = response.json()
-                if "id" in data and data["id"] == self.created_current_account_id:
+                account_id = data.get("id") or data.get("_id")
+                if account_id == self.created_current_account_id:
                     self.log("✅ Single current account retrieval successful")
                     return True
                 else:
