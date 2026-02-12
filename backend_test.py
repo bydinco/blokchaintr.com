@@ -134,8 +134,8 @@ class FinancialAppTester:
             
             if response.status_code == 200:
                 data = response.json()
-                if "id" in data and data["name"] == "Market Alışverişi":
-                    self.created_category_id = data["id"]
+                if ("id" in data or "_id" in data) and data["name"] == "Market Alışverişi":
+                    self.created_category_id = data.get("id") or data.get("_id")
                     self.log("✅ Category creation successful")
                     return True
                 else:
