@@ -61,14 +61,19 @@ export default function Categories() {
     }
   };
 
-  const openModal = (category?: Category) => {
+  const openModal = (category?: Category, parent?: Category) => {
     if (category) {
       setEditingId(category._id);
       setName(category.name);
       setType(category.type as 'income' | 'expense');
       setColor(category.color);
+      setParentId(category.parent_id || null);
     } else {
       resetForm();
+      if (parent) {
+        setParentId(parent._id);
+        setType(parent.type as 'income' | 'expense');
+      }
     }
     setModalVisible(true);
   };
@@ -78,6 +83,7 @@ export default function Categories() {
     setName('');
     setType('expense');
     setColor(COLORS[0]);
+    setParentId(null);
   };
 
   const handleSubmit = async () => {
