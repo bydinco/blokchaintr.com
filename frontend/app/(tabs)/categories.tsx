@@ -98,6 +98,7 @@ export default function Categories() {
         name,
         type,
         color,
+        parent_id: parentId || undefined,
         order: categories.length,
       };
 
