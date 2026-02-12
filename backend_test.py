@@ -78,7 +78,8 @@ class FinancialAppTester:
                 data = response.json()
                 if "access_token" in data and "user" in data:
                     self.auth_token = data["access_token"]
-                    self.user_id = data["user"]["id"]
+                    # Handle both 'id' and '_id' fields
+                    self.user_id = data["user"].get("id") or data["user"].get("_id")
                     self.session.headers.update({"Authorization": f"Bearer {self.auth_token}"})
                     self.log("✅ Login successful")
                     return True
