@@ -646,6 +646,12 @@ const styles = StyleSheet.create({
     color: '#0F172A',
     marginBottom: 8,
   },
+  optionalLabel: {
+    fontSize: 12,
+    fontWeight: '400',
+    color: '#94A3B8',
+    fontStyle: 'italic',
+  },
   input: {
     backgroundColor: '#F8FAFC',
     borderRadius: 12,
