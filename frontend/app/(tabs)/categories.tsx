@@ -41,6 +41,7 @@ export default function Categories() {
   const [name, setName] = useState('');
   const [type, setType] = useState<'income' | 'expense'>('expense');
   const [color, setColor] = useState(COLORS[0]);
+  const [parentId, setParentId] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
 
   useFocusEffect(
